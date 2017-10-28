@@ -91,53 +91,55 @@ function SubmitURL()
   var x2 = document.forms["addURLForm"]["startIndex"].value;
   var x3 = document.forms["addURLForm"]["endIndex"].value;
   var x4 = document.forms["addURLForm"]["HasZero"].value;
-
-if(x4 == "1")
-{
-  for(var i= x2; i<=x3; i++)
+  var data="";
+  if(x4 == "1")
   {
-    if(i<10)
+    for(var i= x2; i<=x3; i++)
     {
+      if(i<10)
+      {
         {
-            document.write("<div id=\"lvtemplate\" style=\" position:static; margin:auto; padding-top: 12px; padding-right: 13px; padding-bottom: 16px; padding-left: 15px; height:400px; width:160px; float:left; vertical-align:middle\">"+"\n"+"<center>"+"\n"+"<h2>"+"\n"+" hi, hello"+"\n"+"</h2>"+"\n"+"<a href=\""+x1+"0"+i+".jpg\" >"+"\n"+"<img style=\"height : 200px; width : 200px; float:left\"src=\""+x1+"0"+i+".jpg\" />"+"\n"+"</a>"+"\n"+"<h3>"+"\n"+"see you..."+"\n"+"</h3>"+"\n"+"</center>"+"\n"+"</div>");
+          data += "<div id=\"lvtemplate\" style=\" position:static; margin:auto; padding-top: 12px; padding-right: 13px; padding-bottom: 16px; padding-left: 15px; height:400px; width:160px; float:left; vertical-align:middle\">"+"\n"+"<center>"+"\n"+"<h2>"+"\n"+" hi, hello"+"\n"+"</h2>"+"\n"+"<a href=\""+x1+"0"+i+".jpg\" >"+"\n"+"<img style=\"height : 200px; width : 200px; float:left\"src=\""+x1+"0"+i+".jpg\" />"+"\n"+"</a>"+"\n"+"<h3>"+"\n"+"see you..."+"\n"+"</h3>"+"\n"+"</center>"+"\n"+"</div>";
 
            //  var file = "<div id=\"lvtemplate\" style=\" position:static; margin:auto; padding-top: 12px; padding-right: 13px; padding-bottom: 16px; padding-left: 15px; height:400px; width:160px; float:left; vertical-align:middle\">"+"\n"+"<center>"+"\n"+"<h2>"+"\n"+" hi, hello"+"\n"+"</h2>"+"\n"+"<a href=\"http:static-ht.mofoscontent.com/cdn_x/sts/tgp/images/gallery/jpg/test_"+i+".jpg\" >"+"\n"+"<img style=\"height : 200px; width : 200px; float:left\"src=\"http:static-ht.mofoscontent.com/cdn_x/sts/tgp/images/gallery/jpg/test_"+i+".jpg\" />"+"\n"+"</a>"+"\n"+"<h3>"+"\n"+"see you..."+"\n"+"</h3>"+"\n"+"</center>"+"\n"+"</div>";
             //
            //  x.innerHTML=file;
         }//static-ht.mofoscontent.com/cdn_x/sts/tgp/images/gallery/jpg/54.jpg
       }
-    else
-        {
-            document.write("<div id=\"lvtemplate\" style=\" position:static; margin:auto; padding-top: 12px; padding-right: 13px; padding-bottom: 16px; padding-left: 15px; height:400px; width:160px; float:left; vertical-align:middle\">"+"\n"+"<center>"+"\n"+"<h2>"+"\n"+" hi, hello"+"\n"+"</h2>"+"\n"+"<a href=\""+x1+i+".jpg\" >"+"\n"+"<img style=\"height : 200px; width : 200px; float:left\"src=\""+x1+i+".jpg\" />"+"\n"+"</a>"+"\n"+"<h3>"+"\n"+"see you..."+"\n"+"</h3>"+"\n"+"</center>"+"\n"+"</div>");
+      else
+      {
+        data += "<div id=\"lvtemplate\" style=\" position:static; margin:auto; padding-top: 12px; padding-right: 13px; padding-bottom: 16px; padding-left: 15px; height:400px; width:160px; float:left; vertical-align:middle\">"+"\n"+"<center>"+"\n"+"<h2>"+"\n"+" hi, hello"+"\n"+"</h2>"+"\n"+"<a href=\""+x1+i+".jpg\" >"+"\n"+"<img style=\"height : 200px; width : 200px; float:left\"src=\""+x1+i+".jpg\" />"+"\n"+"</a>"+"\n"+"<h3>"+"\n"+"see you..."+"\n"+"</h3>"+"\n"+"</center>"+"\n"+"</div>";
 
            // var file = "<div id=\"lvtemplate\" style=\" position:static; margin:auto; padding-top: 12px; padding-right: 13px; padding-bottom: 16px; padding-left: 15px; height:400px; width:160px; float:left; vertical-align:middle\">"+"\n"+"<center>"+"\n"+"<h2>"+"\n"+" hi, hello"+"\n"+"</h2>"+"\n"+"<a href=\"http:static-ht.mofoscontent.com/cdn_x/sts/tgp/images/gallery/jpg/test_"+i+".jpg\" >"+"\n"+"<img style=\"height : 200px; width : 200px; float:left\"src=\"http:static-ht.mofoscontent.com/cdn_x/sts/tgp/images/gallery/jpg/test_"+i+".jpg\" />"+"\n"+"</a>"+"\n"+"<h3>"+"\n"+"see you..."+"\n"+"</h3>"+"\n"+"</center>"+"\n"+"</div>";
            //
            // x.innerHTML=file;
-        }
       }
     }
+  }
   else
+  {
+    for(var i= x2; i<=x3; i++)
+    {
+      if(i<10)
       {
-        for(var i= x2; i<=x3; i++)
         {
-          if(i<10)
-          {
-              {
-                  document.write("<div id=\"lvtemplate\" style=\" position:static; margin:auto; padding-top: 12px; padding-right: 13px; padding-bottom: 16px; padding-left: 15px; height:400px; width:160px; float:left; vertical-align:middle\">"+"\n"+"<center>"+"\n"+"<h2>"+"\n"+" hi, hello"+"\n"+"</h2>"+"\n"+"<a href=\""+x1+i+".jpg\" >"+"\n"+"<img style=\"height : 200px; width : 200px; float:left\"src=\""+x1+i+".jpg\" />"+"\n"+"</a>"+"\n"+"<h3>"+"\n"+"see you..."+"\n"+"</h3>"+"\n"+"</center>"+"\n"+"</div>");
+          data += "<div id=\"lvtemplate\" style=\" position:static; margin:auto; padding-top: 12px; padding-right: 13px; padding-bottom: 16px; padding-left: 15px; height:400px; width:160px; float:left; vertical-align:middle\">"+"\n"+"<center>"+"\n"+"<h2>"+"\n"+" hi, hello"+"\n"+"</h2>"+"\n"+"<a href=\""+x1+i+".jpg\" >"+"\n"+"<img style=\"height : 200px; width : 200px; float:left\"src=\""+x1+i+".jpg\" />"+"\n"+"</a>"+"\n"+"<h3>"+"\n"+"see you..."+"\n"+"</h3>"+"\n"+"</center>"+"\n"+"</div>";
 
                  //  var file = "<div id=\"lvtemplate\" style=\" position:static; margin:auto; padding-top: 12px; padding-right: 13px; padding-bottom: 16px; padding-left: 15px; height:400px; width:160px; float:left; vertical-align:middle\">"+"\n"+"<center>"+"\n"+"<h2>"+"\n"+" hi, hello"+"\n"+"</h2>"+"\n"+"<a href=\"http:static-ht.mofoscontent.com/cdn_x/sts/tgp/images/gallery/jpg/test_"+i+".jpg\" >"+"\n"+"<img style=\"height : 200px; width : 200px; float:left\"src=\"http:static-ht.mofoscontent.com/cdn_x/sts/tgp/images/gallery/jpg/test_"+i+".jpg\" />"+"\n"+"</a>"+"\n"+"<h3>"+"\n"+"see you..."+"\n"+"</h3>"+"\n"+"</center>"+"\n"+"</div>";
                   //
                  //  x.innerHTML=file;
-              }//static-ht.mofoscontent.com/cdn_x/sts/tgp/images/gallery/jpg/54.jpg
-            }
-          else
-              {
-                  document.write("<div id=\"lvtemplate\" style=\" position:static; margin:auto; padding-top: 12px; padding-right: 13px; padding-bottom: 16px; padding-left: 15px; height:400px; width:160px; float:left; vertical-align:middle\">"+"\n"+"<center>"+"\n"+"<h2>"+"\n"+" hi, hello"+"\n"+"</h2>"+"\n"+"<a href=\""+x1+i+".jpg\" >"+"\n"+"<img style=\"height : 200px; width : 200px; float:left\"src=\""+x1+i+".jpg\" />"+"\n"+"</a>"+"\n"+"<h3>"+"\n"+"see you..."+"\n"+"</h3>"+"\n"+"</center>"+"\n"+"</div>");
+        }//static-ht.mofoscontent.com/cdn_x/sts/tgp/images/gallery/jpg/54.jpg
+      }
+      else
+      {
+        data += "<div id=\"lvtemplate\" style=\" position:static; margin:auto; padding-top: 12px; padding-right: 13px; padding-bottom: 16px; padding-left: 15px; height:400px; width:160px; float:left; vertical-align:middle\">"+"\n"+"<center>"+"\n"+"<h2>"+"\n"+" hi, hello"+"\n"+"</h2>"+"\n"+"<a href=\""+x1+i+".jpg\" >"+"\n"+"<img style=\"height : 200px; width : 200px; float:left\"src=\""+x1+i+".jpg\" />"+"\n"+"</a>"+"\n"+"<h3>"+"\n"+"see you..."+"\n"+"</h3>"+"\n"+"</center>"+"\n"+"</div>";
 
                  // var file = "<div id=\"lvtemplate\" style=\" position:static; margin:auto; padding-top: 12px; padding-right: 13px; padding-bottom: 16px; padding-left: 15px; height:400px; width:160px; float:left; vertical-align:middle\">"+"\n"+"<center>"+"\n"+"<h2>"+"\n"+" hi, hello"+"\n"+"</h2>"+"\n"+"<a href=\"http:static-ht.mofoscontent.com/cdn_x/sts/tgp/images/gallery/jpg/test_"+i+".jpg\" >"+"\n"+"<img style=\"height : 200px; width : 200px; float:left\"src=\"http:static-ht.mofoscontent.com/cdn_x/sts/tgp/images/gallery/jpg/test_"+i+".jpg\" />"+"\n"+"</a>"+"\n"+"<h3>"+"\n"+"see you..."+"\n"+"</h3>"+"\n"+"</center>"+"\n"+"</div>";
                  //
                  // x.innerHTML=file;
-              }
-            }
-          }
       }
+    }
+  }
+  var y=document.getElementById("listview");
+  y.innerHTML = data;
+}
