@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset="UTF-8">
+		<title color="red">welcome</title>
+        <link rel="icon" type="image/jpg" href="TitleBarIcon.jpg" sizes="16x16">
+        <link rel="stylesheet" href="ProjFiles/CSSStyles/MyCustomStyles.css" type="text/css" media="screen" />
+       <!-- <script type="text/javascript" src="ProjFiles\JavaScript\listviewcreate.js"></script>  -->
+	</head>
+	<body bgcolor="lightgreen">
+		<center>
+            <div style=" margin:auto; width : 100%; padding: 0;">
+                <div class="pgheader">
+                    <center>
+                        <p>this is my first header in first html page with css
+                        </p>
+                    </center>
+                </div>
+                <div class="pgbody">
+									<div>
+										<center>
+											<table>
+                        <form name="addURLForm" action="" onsubmit="SubmitURL(); return false;"> <!-- method="post"  enctype="multipart/form-data" -->
+                          <tr>
+                            <td>
+                              *Select predefined url
+                            </td>
+                            <td>
+                              <select name="preDefinedURLs">
+                                <option value="I have a URL">I have a URL</option>
+                                <option value="http:static-ht.mofoscontent.com/cdn_x/sts/tgp/images/gallery/jpg/test_">strandedteens set1</option>
+                                <option value="http:static-ht.mofoscontent.com/cdn_x/sts/tgp/images/gallery/jpg/">strandedteens set2</option>
+                                <option value="http:static-ht.mofoscontent.com/cdn_x/iktg/tour5/images/gallery/jpg/">brazzers</option>
+                                <option value="http://cdn.x1cdn.com/ak/watchmygirlfriend/videothumbs/">watchmygf</option>
+                                <option value="http://cdn.x1cdn.com/ak/watchmygirlfriend/videothumbs/">watchmygf gif images</option>
+                              </select>
+                            </td>
+                          </tr>
+                              <tr>
+                                <td>
+                                    *URL
+                                </td>
+                                <td>
+                                    <input type="text" name="url"/>
+                                </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                  *Set image type
+                              <td>
+                                <select name="imageTypes">
+                                  <option value="jpg">jpg</option>
+                                  <option value="gif">gif</option>
+                                </select>
+                              </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    *StartIndex
+                                </td>
+                                <td>
+                                    <input type="text" name="startIndex" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    *EndIndex
+                                </td>
+                                <td>
+                                    <input type="text" name="endIndex" />
+                                </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                  *Add Zero for single digit numbres
+                              <td>
+                                <select name="HasZero">
+                                  <option value="1">yes</option>
+                                  <option value="0">no</option>
+                                </select>
+                              </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="submit" name="submitMovie" value="Submit"/>
+                                </td>
+                            </tr>
+                        </form>
+                    </table>
+										</center>
+									</div>
+									<div id="listview" style=" margin:auto; width : 100%; padding: 0;" >
+										<script type="application/javascript" src="ProjFiles/JavaScript/listviewcreate3.js">
+										</script>
+									</div>
+                </div>
+                <div class="pgfooter">
+                    <p>this is my first header in first html page with css
+                    </p>
+                </div>
+            </div>
+		</center>
+	</body>
+</html>
