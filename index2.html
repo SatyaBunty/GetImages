@@ -26,14 +26,25 @@
                               *Select predefined url
                             </td>
                             <td>
-                              <select name="preDefinedURLs">
+                              <select name="preDefinedURLs" onchange="UpdateURL()" id="URLOptions">
                                 <option value="I have a URL">I have a URL</option>
-                                <option value="http:static-ht.mofoscontent.com/cdn_x/sts/tgp/images/gallery/jpg/test_">strandedteens set1</option>
+                                <!-- <option value="http:static-ht.mofoscontent.com/cdn_x/sts/tgp/images/gallery/jpg/test_">strandedteens set1</option>
                                 <option value="http:static-ht.mofoscontent.com/cdn_x/sts/tgp/images/gallery/jpg/">strandedteens set2</option>
                                 <option value="http:static-ht.mofoscontent.com/cdn_x/iktg/tour5/images/gallery/jpg/">brazzers</option>
                                 <option value="http://cdn.x1cdn.com/ak/watchmygirlfriend/videothumbs/">watchmygf</option>
                                 <option value="http://cdn.x1cdn.com/ak/watchmygirlfriend/videothumbs/">watchmygf gif images</option>
+                                <option value="http://cdn.brutalx.com/content/thumbs/">BrutalX</option> -->
                               </select>
+                            </td>                            
+                            <!-- <td>
+                                *Model Code for BrutalX
+                            </td> -->
+                            <td>
+                                <select name="BrutalXModels" onchange="UpdateModel()" id="ModelOptions" style="visibility:hidden">
+                                    <option value=""></option>
+                                    <option value="tbx210_">210</option>
+                                    <option value="tbx212_">212</option>
+                                </select>
                             </td>
                           </tr>
                               <tr>
@@ -41,8 +52,8 @@
                                     *URL
                                 </td>
                                 <td>
-                                    <input type="text" name="url"/>
-                                </td>
+                                    <input type="text" name="url" id="URLValue"/>
+                                </td>                                
                             </tr>
                             <tr>
                               <td>
