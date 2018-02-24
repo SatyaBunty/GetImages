@@ -1,8 +1,122 @@
+//var json = require('../ProjFiles/LocalFiles/JsonFiles/URLs.json');
 onAppStart();
 function onAppStart()
 {
    // x.appendChild(y);
-};
+   // this requests the file and executes a callback with the parsed result once
+   //   it is available
+   /*
+   fetchJSONFile('./ProjFiles/LocalFiles/JsonFiles/URLs.json', function(data)
+   {
+       // do something with your data
+       console.log(data);
+   });*/
+
+   /*
+   var xhr = new XMLHttpRequest();
+   xhr.onreadystatechange = function()
+   {
+       if (xhr.readyState === XMLHttpRequest.DONE)
+       {
+           if (xhr.status === 200 && xhr.readyState === 4)
+           {
+             var dddddd = xhr.response;
+               if (success)
+               {
+                 success(JSON.parse(xhr.responseText));
+               }
+            }
+            else
+            {
+              if (error)
+              {
+                error(xhr);
+              }
+           }
+       }
+   };
+   xhr.open("GET", "./ProjFiles/LocalFiles/JsonFiles/URLs.json", true);
+   */
+
+
+   //xhr.send();
+
+
+   /*
+   var a = new XMLHttpRequest();
+   a.open("GET","./ProjFiles/LocalFiles/JsonFiles/URLs.json",true);
+   a.onreadystatechange = function() {
+     if( this.readyState == 4) 
+     {
+       if( this.status == 200) 
+       {
+         var json = window.JSON ? JSON.parse(this.reponseText) : eval("("+this.responseText+")");
+         // do something with json
+        }
+        else alert("HTTP error "+this.status+" "+this.statusText);
+      }
+    }
+    // a.send();
+    */
+
+
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', './ProjFiles/LocalFiles/JsonFiles/URLs.json', true); // Replace 'my_data' with the path to your file
+    xobj.onreadystatechange = function () 
+    {
+      if (xobj.readyState == 4 && xobj.status == 200)
+      {
+        // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+        //callback(xobj.responseText);
+        var data = xobj.response;
+        var options = JSON.parse(data);
+        var option = document.getElementById('URLOptions');
+        var optionsHTML="";
+        for(i=0; i<options.length; i++ )
+        {
+          optionsHTML = optionsHTML+"<option value="+options[i].url+">"+options[i].name+"</option>";
+        }
+        option.innerHTML = option.innerHTML+optionsHTML;
+      }
+    };
+    xobj.send();
+    //xobj.send(null);  
+ }
+
+
+function fetchJSONFile(path, callback) {
+  var httpRequest = new XMLHttpRequest();
+  httpRequest.onreadystatechange = function() {
+      if (httpRequest.readyState === 4) {
+          if (httpRequest.status === 200) {
+              var data = JSON.parse(httpRequest.responseText);
+              if (callback) callback(data);
+          }
+      }
+  };
+  httpRequest.open('GET', path);
+  httpRequest.send(); 
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 function SubmitURL()
 {
@@ -10,14 +124,15 @@ function SubmitURL()
   var x6 = document.forms["addURLForm"]["preDefinedURLs"].value;
   var imageType = document.forms["addURLForm"]["imageTypes"].value;
   var x1 = document.forms["addURLForm"]["url"].value;
-  if(x6=="I have a URL")
-  {
-    urls=x1;
-  }
-  else
-  {
-    urls=x6;
-  }
+  // if(x6=="I have a URL")
+  // {
+  //   urls=x1;
+  // }
+  // else
+  // {
+  //   urls=x6;
+  // }
+  urls=x1;
   var x2 = document.forms["addURLForm"]["startIndex"].value;
   var x3 = document.forms["addURLForm"]["endIndex"].value;
   var x4 = document.forms["addURLForm"]["HasZero"].value;
@@ -56,4 +171,33 @@ function SubmitURL()
   }
   var y=document.getElementById("listview");
   y.innerHTML = data;
+}
+
+function UpdateURL()
+{
+  var urlId = document.getElementById('URLValue');
+  var urlval = document.getElementById('URLOptions');
+  var modelval = document.getElementById('ModelOptions');
+  if(urlval.value == "http://cdn.brutalx.com/content/thumbs/")
+  {
+    //modelval.style.display = 'block'; //for java script but effects UI design
+    modelval.style.visibility = 'visible'; //for java script
+    //modelval.show(); //for jquery
+  }
+  else
+  {
+    //modelval.style.display = 'none'; //for java script but effects UI design
+    modelval.style.visibility = 'hidden'; //for java script
+    //modelval.hide(); //for jquery
+  }
+  urlId.value = urlval.value;
+
+}
+
+function UpdateModel()
+{
+  var urlId = document.getElementById('URLValue');
+  var urlval = document.getElementById('URLOptions');
+  var modelval = document.getElementById('ModelOptions');
+  urlId.value = (urlval.value)+(modelval.value);
 }
