@@ -100,24 +100,6 @@ function fetchJSONFile(path, callback) {
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function SubmitURL()
 {
   var urls="";
