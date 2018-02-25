@@ -99,7 +99,6 @@ function fetchJSONFile(path, callback) {
   httpRequest.send(); 
 }
 
-
 function SubmitURL()
 {
   var urls="";
@@ -165,6 +164,29 @@ function UpdateURL()
     //modelval.style.display = 'block'; //for java script but effects UI design
     modelval.style.visibility = 'visible'; //for java script
     //modelval.show(); //for jquery
+
+    var xobj = new XMLHttpRequest();
+    xobj.overrideMimeType("application/json");
+    xobj.open('GET', './ProjFiles/LocalFiles/JsonFiles/BrutalXModels.json', true); // Replace 'my_data' with the path to your file
+    xobj.onreadystatechange = function () 
+    {
+      if (xobj.readyState == 4 && xobj.status == 200)
+      {
+        // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+        //callback(xobj.responseText);
+        modelval.innerHTML = "";
+        var data = xobj.response;
+        var options = JSON.parse(data);// {"code" : "", "url" : ""},
+        var optionsHTML="";
+        for(i=0; i<options.length; i++ )
+        {
+          optionsHTML = optionsHTML+"<option value="+options[i].url+">"+options[i].code+"</option>";
+        }
+        modelval.innerHTML = modelval.innerHTML+optionsHTML;
+      }
+    };
+    xobj.send();
+
   }
   else
   {
