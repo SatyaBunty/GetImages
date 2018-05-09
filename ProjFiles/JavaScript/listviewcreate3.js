@@ -223,8 +223,9 @@ function myFunction()
       {
         // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
         //callback(xobj.responseText);
-        var data = xobj.response;
-        var options = JSON.parse(data);
+         var data ="";
+        var responseData = xobj.response;
+        var options = JSON.parse(responseData);
         var optionsHTML="";
         for(i=0; i<options.all_local_files.length; i++ )
         {
