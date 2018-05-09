@@ -216,6 +216,9 @@ function myFunction()
     // xobj.overrideMimeType("application/json");
     xobj.onreadystatechange = function () 
     {
+       var showLocal = confirm("Do you really want to see local images");
+       if(showLocal == true)
+       {
       if (xobj.readyState == 4 && xobj.status == 200)
       {
         // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
@@ -234,4 +237,8 @@ function myFunction()
     xobj.open("POST", "./ProjFiles/PHPServices/ReceiveService.php?userRequest=GetLocalImages", true);
     xobj.setRequestHeader("Content-type", "application/json");
     xobj.send(dbParam);
+    }
+    else
+    {
+    }
 }
