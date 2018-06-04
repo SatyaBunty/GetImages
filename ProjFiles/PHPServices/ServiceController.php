@@ -16,6 +16,9 @@ class RequestHandler// extends ServerStatus
             case "GetLocalImages":
                 return $response = $uServices -> GetLocalImages($data);
                 break;
+            case "GetDriveImages":
+                return $response = $uServices -> GetImagesFromDrive($data);
+                break;
             default:
                 return $response = $uServices -> FaultMethod($data);
                 break;
