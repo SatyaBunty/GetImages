@@ -127,6 +127,29 @@ class UserServices extends ServerStatus
             //echo "Connection failed: " . $e->getMessage();
         }
     }
+    
+    function GetImagesFromDrive($data)
+    {
+        try
+        {
+            $url = $data['url'];//"https://script.google.com/macros/s/AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS/exec";            
+            $method = $data['access_method'];
+            $Headers = $data['headers'];
+            $parameters = $data['parameters'];
+            if(!isset($url))
+            {
+                $url = "https://script.google.com/macros/s/AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS/exec";
+            }
+            
+            $externalMethodService = new AccessExternalServiceCalls();
+            $response = $externalMethodService -> AccessExternalServices($url, $method, $parameters, $Headers);
+            return $response;
+        }
+        catch(PDOException $e)
+        {
+
+        }
+    }
 
     function FaultMethod($data)
     {
