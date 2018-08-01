@@ -84,6 +84,51 @@ class UserServices extends ServerStatus
         }
     }
 
+
+    function GetLocalGames($data)
+    {
+        try
+        {
+            $localURL = $data['localURL'];
+            $files = scandir($localURL);
+            $result = array();
+            // $files2 = scandir($dir, 1); //To get files in reverse order
+            //$scanned_directory = array_diff(scandir($dir), array('..', '.'));//this removes  ".", ".." from the directory 
+            foreach ($files as $key => $value)
+            { 
+                if (!in_array($value,array(".","..")))
+                {
+                    if (is_dir($localURL . DIRECTORY_SEPARATOR . $value))
+                    {
+                        $result[$value] = dirToArray($localURL . DIRECTORY_SEPARATOR . $value);
+                    }
+                    else
+                    {
+                        $result[] = $value;
+                    }
+                }
+            } 
+            $response = array(
+                    "message"=>"Found all the available games",
+                    "code"=>"1",
+                    "all_local_files"=>$result
+                );
+                return $response;
+        }
+        catch(PDOException $e)
+        {
+          // echo 'Exception -> ';
+          //   var_dump($e->getMessage());
+            $user_data = array();
+            $response = array("message"=>"Games cannot be retrived.".$e->getMessage(),
+                             "code"=>"0",
+                              "UserDetails"=>""
+                             );
+            return $response;
+            //echo "Connection failed: " . $e->getMessage();
+        }
+    }
+
     function GetLocalImages($data)
     {
         try
