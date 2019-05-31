@@ -11,67 +11,20 @@
 		<center>
             <div style=" margin:auto; width : 100%; padding: 0;">
                 <div class="pgheader">
-                    <center>
-                        <p>this is my first header in first html page with css
-                        </p>
-                    </center>
                 </div>
                 <div class="pgbody">
-									<button onclick="GetFromStrandedTeens()">https://www.strandedteens.com
-									</button>
-									<button onclick="GetFromWatchMyGirlFriend()">https://watchmygf.net
-									</button>
-									<button onclick="GetFromBrazzers()">https://www.brazzers.com
-									</button>
-									<div>
-										<center>
-											<table>
-                        <form name="addURLForm" action="" onsubmit="SubmitURL(); return false;"> <!-- method="post"  enctype="multipart/form-data" -->
-                            <tr>
-                                <td>
-                                    *URL
-                                </td>
-                                <td>
-                                    <input type="text" name="url"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    *StartIndex
-                                </td>
-                                <td>
-                                    <input type="text" name="startIndex" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    *EndIndex
-                                </td>
-                                <td>
-                                    <input type="text" name="endIndex" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    *Has Zero
-                                </td>
-                                <td>
-                                    <input type="text" name="HasZero" />
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <input type="submit" name="submitMovie" value="Submit"/>
-                                </td>
-                            </tr>
-                        </form>
-                    </table>
-										</center>
-									</div>
-                    <div id="listview" style=" margin:auto; width : 100%; padding: 0;" >
-                        <script type="application/javascript" src="ProjFiles/JavaScript/listviewcreate2.js">
-                        </script>
-                    </div>
+                        <div id="bodyHeaderDiv">
+                                <select name="preDefinedURLs" onchange="UpdateForm()" id="URLOptions">
+                                    <option value="null"></option>
+                                    <option value="I have a URL">I have a URL</option>
+                                    <option value="XX/YY/10XXYY model">XX/YY/10XXYY model</option>
+                                    <option value="x--_y-- model">"x--_y-- model</option>
+                                    <option value="I have a URL with multiple increment values">I have a URL with multiple increment values</option>
+                                </select>
+                            </div>
+                    <div id="formDiv"></div>
+                    
+                    <div id="dataDisplayDiv" style=" margin:auto; width : 100%; padding: 0;"></div>
                 </div>
                 <div class="pgfooter">
                     <p>this is my first header in first html page with css
@@ -79,5 +32,9 @@
                 </div>
             </div>
 		</center>
+		<script type="application/javascript" src="ProjFiles/JavaScript/listviewcreate5.js">
+										</script>
 	</body>
 </html>
+<!-- https://cdn11.teamskeetimages.com/design/tour/slm/tour/pics/**pornstarname**/ -->
+<!-- above url for sislovesme.com -->

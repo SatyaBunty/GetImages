@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+        <meta charset="UTF-8">
+		<title color="red">welcome</title>
+        <link rel="icon" type="image/jpg" href="TitleBarIcon.jpg" sizes="16x16">
+        <link rel="stylesheet" href="ProjFiles/CSSStyles/MyCustomStyles.css" type="text/css" media="screen" />
+       <!-- <script type="text/javascript" src="ProjFiles\JavaScript\listviewcreate.js"></script>  -->
+	</head>
+	<body bgcolor="lightgreen">
+		<center>
+            <div style=" margin:auto; width : 100%; padding: 0;">
+                <div class="pgheader">
+                    <center>
+                        <p>this is my first header in first html page with css
+                        </p>
+                    </center>
+                </div>
+                <div class="pgbody">
+									<button onclick="GetFromStrandedTeens()">https://www.strandedteens.com
+									</button>
+									<button onclick="GetFromWatchMyGirlFriend()">https://watchmygf.net
+									</button>
+									<button onclick="GetFromBrazzers()">https://www.brazzers.com
+									</button>
+									<div>
+										<center>
+											<table>
+                        <form name="addURLForm" action="" onsubmit="SubmitURL(); return false;"> <!-- method="post"  enctype="multipart/form-data" -->
+                            <tr>
+                                <td>
+                                    *URL
+                                </td>
+                                <td>
+                                    <input type="text" name="url"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    *StartIndex
+                                </td>
+                                <td>
+                                    <input type="text" name="startIndex" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    *EndIndex
+                                </td>
+                                <td>
+                                    <input type="text" name="endIndex" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    *Has Zero
+                                </td>
+                                <td>
+                                    <input type="text" name="HasZero" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <input type="submit" name="submitMovie" value="Submit"/>
+                                </td>
+                            </tr>
+                        </form>
+                    </table>
+										</center>
+									</div>
+                    <div id="listview" style=" margin:auto; width : 100%; padding: 0;" >
+                        <script type="application/javascript" src="ProjFiles/JavaScript/listviewcreate2.js">
+                        </script>
+                    </div>
+                </div>
+                <div class="pgfooter">
+                    <p>this is my first header in first html page with css
+                    </p>
+                </div>
+            </div>
+		</center>
+	</body>
+</html>
