@@ -16,11 +16,11 @@ packages/
 # Ignore folder named '.vs'
 .vs/
 
+# Ignore folder named and all files in it 'LocalImages'
+LocalImages/*
+
 # Ignore folder named 'LocalImages'
 LocalImages/
-
-# Ignore folder named all files in it 'LocalImages'
-LocalImages/*
 
 # Ignore file names 'IsIgnoreWorking.js'
 IsIgnoreWorking.js
