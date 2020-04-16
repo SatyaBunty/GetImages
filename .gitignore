@@ -19,6 +19,9 @@ packages/
 # Ignore folder named 'LocalImages'
 LocalImages/
 
+# Ignore folder named all files in it 'LocalImages'
+LocalImages/*
+
 # Ignore file names 'IsIgnoreWorking.js'
 IsIgnoreWorking.js
 
