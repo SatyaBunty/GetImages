@@ -31,13 +31,26 @@ function UpdateForm()
     formData.setAttribute('method',"post");
     formData.setAttribute('action',"");
     
-    formData.appendChild(AddSelectDropDown("imageTypes", ["jpg", "gif"], "Set image Type", true));
-    formData.appendChild(AddTextField(urlStartPartName, "Add URl", true));
+    // formData.appendChild(AddSelectDropDown("imageTypes", ["jpg", "gif"], "Set image Type", true));
+    // formData.appendChild(AddTextField(urlStartPartName, "Add URl", true));
     if(selectedOption === "Access Local Images")
     {
       formData.setAttribute('onsubmit',"AccessDriveImages(\"\"); return false;");
+      formData.appendChild(AddSubmitButton("Submit", true));
     }
-    else if(selectedOption === "I have a URL")
+    else if(selectedOption === "Access Personal Images")
+    {
+      formData.setAttribute('name',"PersonalImagesForm");
+      formData.appendChild(AddTextField("UserName", "UserName", true));
+      formData.appendChild(AddPasswordField("Password", "Password", true));
+      formData.setAttribute('onsubmit',"AccessUserData(); return false;");
+      formData.appendChild(AddSubmitButton("Submit", true));
+    }
+    else 
+    {
+      formData.appendChild(AddSelectDropDown("imageTypes", ["jpg", "gif"], "Set image Type", true));
+    formData.appendChild(AddTextField(urlStartPartName, "Add URl", true));
+    if(selectedOption === "I have a URL")
     {
         formData.setAttribute('name',"singleURLForm");
         formData.setAttribute('onsubmit',"AccessSingleURLData(); return false;");
@@ -78,6 +91,9 @@ function UpdateForm()
     else{}
     formData.appendChild(AddTextField(urlEndPartName, "Enter if have extra end point", true));
     formData.appendChild(AddSubmitButton("Submit", true));
+  }
+  // formData.appendChild(AddTextField(urlEndPartName, "Enter if have extra end point", true));
+  //   formData.appendChild(AddSubmitButton("Submit", true));
 
     var formDiv = document.getElementById("formDiv");
     while (formDiv.hasChildNodes()) {
@@ -107,6 +123,45 @@ function OnAddRemoveButtonClicked(owner)
     {
         alert("reached else part of the code");
     }
+}
+
+function AccessUserData()
+{
+  var urlPart1="https://script.google.com/macros/s/";
+  var id = "AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS";
+  var extension = "/exec";
+  var serviceURL=urlPart1 + id + extension;
+
+  var userName = document.forms["PersonalImagesForm"]["UserName"].value;
+  var userPassword = document.forms["PersonalImagesForm"]["Password"].value;
+  
+  var xobj = new XMLHttpRequest();
+    xobj.onreadystatechange = function () 
+    {
+      if (xobj.readyState == 4 && xobj.status == 200)
+      {
+        var responseData = xobj.response;
+        if(responseData != "")
+        {
+          var options = JSON.parse(responseData);
+          var personalFolderID = options.accessible_items;
+          AccessDriveImages(personalFolderID);
+        }
+        else
+        {
+          window.alert("User is not available, Sorry");
+        }
+      }
+      else
+      {
+      }
+    };
+    var headerObj = "Contenttype=application/json&userRequest=UserAccess" ;
+      var obj = {"method_name":"GetValidUserData","service_request_data":{"UserName":userName, "Password":userPassword}};
+      var dbParam = JSON.stringify(obj);
+
+      xobj.open("POST", (serviceURL +"?"+ headerObj), true);
+      xobj.send(dbParam); 
 }
 
 function AccessDriveImages(accessID)

@@ -24,6 +24,32 @@ function AddTextField(fieldName, captionText, addCaption)
     return formChildDiv;
 }
 
+function AddPasswordField(fieldName, captionText, addCaption)
+{
+    var formChildDiv = document.createElement("div");
+
+    var inputEntryField = document.createElement("input");
+    inputEntryField.type = "password";
+    inputEntryField.name = fieldName;
+
+    if(addCaption === true)
+    {
+        if(captionText === null || captionText === "")
+        {
+            captionText = fieldName;
+        }
+
+        formChildDiv.appendChild(document.createTextNode(captionText));
+        formChildDiv.appendChild(inputEntryField);
+        formChildDiv.appendChild(document.createElement("br"));
+    }
+    else
+    {
+        formChildDiv.appendChild(inputEntryField);
+    }
+    return formChildDiv;
+}
+
 function AddSubmitButton(fieldName, isSubmitButton)
 {
     var formChildDiv = document.createElement("div");
