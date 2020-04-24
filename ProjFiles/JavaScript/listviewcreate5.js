@@ -33,7 +33,11 @@ function UpdateForm()
     
     formData.appendChild(AddSelectDropDown("imageTypes", ["jpg", "gif"], "Set image Type", true));
     formData.appendChild(AddTextField(urlStartPartName, "Add URl", true));
-    if(selectedOption === "I have a URL")
+    if(selectedOption === "Access Local Images")
+    {
+      formData.setAttribute('onsubmit',"AccessDriveImages(\"\"); return false;");
+    }
+    else if(selectedOption === "I have a URL")
     {
         formData.setAttribute('name',"singleURLForm");
         formData.setAttribute('onsubmit',"AccessSingleURLData(); return false;");
@@ -103,6 +107,139 @@ function OnAddRemoveButtonClicked(owner)
     {
         alert("reached else part of the code");
     }
+}
+
+function AccessDriveImages(accessID)
+{
+  ///GetImages/ProjFiles/Icons/FolderIcon2.jpg
+  //https://script.googleusercontent.com/macros/echo?user_content_key=fRITKgwTppbDRU26G9-2d3OHp-pcaYrks21Ckq4I3_EuK9ckjld5eGK78EGqNuHWkpr4b2iStCP34wPFI4f3dDTjHj0dagBem5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnBOdbNCjBmbjEOOPRrZzbJVgEeGpP0pCiiIfVfhrzVlD0XAZUKozy0efPajHEymamqZYwDtuJYeH&lib=MeTk28aelQajx2xUtX-QeZ3cAfuWwl7sa
+
+  var urlPart1="https://script.google.com/macros/s/";
+  var id = "AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS";//https://script.google.com/macros/s/AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS/exec
+  var extension = "/exec";
+  var serviceURL=urlPart1 + id + extension;
+
+  //{ "name":"labnol", "blog":"ctrlq", "type":"post"  }
+  //dbParam = JSON.stringify(obj);
+  var xobj = new XMLHttpRequest();
+    // xobj.overrideMimeType("application/json");
+    xobj.onreadystatechange = function () 
+    {
+      if (xobj.readyState == 4 && xobj.status == 200)
+      {
+        var responseData = xobj.response;
+        if(responseData != "")
+        {
+          var options = JSON.parse(responseData);
+          var folderItemsList = options.folder_items;
+          var optionsHTML="";
+          for(i=0; i<folderItemsList.length; i++ )
+          {
+            if(folderItemsList[i].mimeType === "folder")
+            {
+              //GetImages/ProjFiles/Icons/FolderIcon2.jpg
+              displayURL = "ProjFiles/Icons/FolderIcon2.jpg";//+ folderItemsList[i].id;
+              var methodOnClick = "javascript:AccessDriveImages(\'"+ folderItemsList[i].id +"\')";
+              optionsHTML += "<div id=\"lvtemplate\" style=\" position:static; margin:auto; padding-top: 12px; padding-right: 13px; padding-bottom: 16px; padding-left: 15px; height:400px; width:160px; float:left; vertical-align:middle\">"+"\n"+"<center>"+"\n"+"<h2>"+"\n"+" hi, hello"+"\n"+"</h2>"+"\n"+"<a href=\""+methodOnClick+"\" >"+"\n"+"<img style=\"height : 200px; width : 200px; float:left\"src=\""+displayURL+"\" />"+"\n"+"</a>"+"\n"+"<h3>"+"\n"+"see you..."+"\n"+"</h3>"+"\n"+"</center>"+"\n"+"</div>";
+            }
+            else if(folderItemsList[i].mimeType === "image")
+            {
+              displayURL = "https://drive.google.com/uc?id="+ folderItemsList[i].id;
+              var fileName = folderItemsList[i].name;
+              optionsHTML += "<div id=\"lvtemplate\" style=\" position:static; margin:auto; padding-top: 12px; padding-right: 13px; padding-bottom: 16px; padding-left: 15px; height:400px; width:160px; float:left; vertical-align:middle\">"+"\n"+"<center>"+"\n"+"<h2>"+"\n"+" hi, hello"+"\n"+"</h2>"+"\n"+"<a href=\""+displayURL+"\" target=\"_blank\">"+"\n"+"<img style=\"height : 200px; width : 200px; float:left\"src=\""+displayURL+"\" />"+"\n"+"</a>"+"\n"+"<h3>"+"\n"+fileName+"\n"+"</h3>"+"\n"+"</center>"+"\n"+"</div>";
+            }
+            else
+            {
+
+            }
+          }
+          var y=document.getElementById("dataDisplayDiv");
+          y.innerHTML = optionsHTML;
+        }
+        else
+        {
+          window.alert("Folder is empty");
+        }
+      }
+      else
+      {
+      }
+    };
+    // var dbParam = obj;
+    //var dbParam = "employeeStatus='Active'&name='Henry'";//this works but sends data to contents in postdata.
+    //var serviceURLs = serviceURL + "?" + dbParam;
+    // xobj.open("POST", (serviceURL +"?"+ JSON.stringify(headerObj)), true);
+    if(accessID == "")
+    { 
+      xobj.open("GET", (serviceURL), true);
+      xobj.send();
+    }
+    else
+    {
+      var headerObj = "Contenttype=application/json&userRequest=FileAccess" ;
+
+      //var obj = {"method_name":"ConvertDocDataToHTML","service_request_data":{"file_name":"TestDocment","folder_id":"1ql0PNnEIh9gyKnhq8GahnbpOxlxGHUUl"}};
+      var obj = {"method_name":"listFilesInFolder","service_request_data":{"folder_id":accessID}};
+      var dbParam = JSON.stringify(obj);
+
+      xobj.open("POST", (serviceURL +"?"+ headerObj), true);
+      xobj.send(dbParam);
+    }
+    //xobj.setRequestHeader("Content-type", "application/json");
+    //xobj.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    // xobj.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    
+}
+
+function GetDocData()
+{
+  var urls="";
+  var serviceURL = document.forms["addURLForm"]["serviceURL"].value;
+  if(serviceURL == "")
+  {
+    // serviceURL = "https://script.google.com/macros/s/AKfycbx-jmj_70IEWRP3t5Z2QFSIkWakhYbTYvTMM2uTCCIE3ZXx0loS/exec";
+    // serviceURL = "https://script.google.com/macros/s/AKfycbxR_xKju3dN5Wfj7FTLLxCmhOgZOLtv0d7FhUhVh80JtkuJdJI/exec";
+    serviceURL = "https://script.google.com/macros/s/AKfycbxaS7U2U4nBYB6dndL7c1CQsLO09T7OuYHKdKKfa-vBANY_RVI/exec";//?Contenttype=application/json&userRequest=GetDocData";
+  }
+  else
+  {
+
+  }
+  var obj = {"method_name":"ConvertDocDataToHTML","service_request_data":{"file_name":"TestDocment","folder_id":"1ql0PNnEIh9gyKnhq8GahnbpOxlxGHUUl"}};//{ "name":"labnol", "blog":"ctrlq", "type":"post"  }
+  //dbParam = JSON.stringify(obj);
+  var xobj = new XMLHttpRequest();
+    // xobj.overrideMimeType("application/json");
+    xobj.onreadystatechange = function () 
+    {
+      if (xobj.readyState == 4 && xobj.status == 200)
+      {
+        //onclick="window.open('anotherpage.html', '_blank');"
+        // Required use of an anonymous callback as .open will NOT return a value but simply returns undefined in asynchronous mode
+        //callback(xobj.responseText);
+        var responseData = xobj.response;
+        if(responseData != "")
+        {
+          var options = JSON.parse(responseData);
+          window.alert(responseData);
+          //var y=document.getElementById("listview");
+          //y.innerHTML = data;
+        }
+      }
+      else
+      {
+      }
+    };
+    var headerObj = "Contenttype=application/json&userRequest=GetDocData" ;
+    var dbParam = JSON.stringify(obj);
+    // var dbParam = obj;
+    //var dbParam = "employeeStatus='Active'&name='Henry'";//this works but sends data to contents in postdata.
+    //var serviceURLs = serviceURL + "?" + dbParam;
+    // xobj.open("POST", (serviceURL +"?"+ JSON.stringify(headerObj)), true);
+    xobj.open("POST", (serviceURL +"?"+ headerObj), true);
+    //xobj.setRequestHeader("Content-type", "application/json");
+    //xobj.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    // xobj.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xobj.send(dbParam);
 }
 
 function AccessSingleURLData()
